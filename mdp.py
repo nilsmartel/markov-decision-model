@@ -50,3 +50,19 @@ class MDP:
                 newHeuristic[s][a] = value
 
         return newHeuristic
+
+    def policy(self, iterations):
+        h = self.heuristic(iterations)
+        p = dict()
+
+        for (k, v) in h:
+            bestAction = None
+            highestUtility = None
+            for (action, utility) in v:
+                if highestUtility == None or highestUtility < utility:
+                    bestAction = action
+                    highestUtility = utility
+
+            p[k] = bestAction
+
+        return p
